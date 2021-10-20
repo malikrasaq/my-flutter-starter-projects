@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
               Text(
                 'Malik Rasaq',
                 style: TextStyle(
+                  fontFamily: 'Montserrat',
                   fontSize: 40.0,
                   color: Colors.blue,
                 ),
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
               Text(
                 'FLUTTER DEVELOPER',
                 style: TextStyle(
+                  fontFamily: 'Montserrat',
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2.5,
