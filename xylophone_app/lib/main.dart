@@ -7,8 +7,21 @@ class XylophoneApp extends StatelessWidget {
   const XylophoneApp({Key? key}) : super(key: key);
 
   void playSound(int soundNumber) {
-       final player = AudioCache();
-       player.play('note$soundNumber.wav');
+    final player = AudioCache();
+    player.play('note$soundNumber.wav');
+  }
+
+  Expanded buildKey(
+      {required Color color, required int soundNumber}) {
+    return Expanded(
+      child: TextButton(
+        style: TextButton.styleFrom(backgroundColor: color),
+        onPressed: () {
+          playSound(soundNumber);
+        },
+        child: const Text('play'),
+      ),
+    );
   }
 
   @override
@@ -20,69 +33,13 @@ class XylophoneApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.red),
-                  onPressed: () {
-                    playSound(1);
-                  },
-                    child: const Text('one'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.white),
-                  onPressed: () {
-                    playSound(2);
-                  },
-                  child: const Text('two'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.green),
-                  onPressed: () {
-                    playSound(3);
-                  },
-                  child:const Text('three'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.teal),
-                  onPressed: () {
-                    playSound(4);
-                  },
-                    child: const Text('four'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.yellow),
-                  onPressed: () {
-                    playSound(5);
-                  },
-                    child: const Text('five'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.purple),
-                  onPressed: () {
-                    playSound(6);
-                  },
-                    child: const Text('six'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.brown),
-                  onPressed: () {
-                    playSound(7);
-                  },
-                  child: const Text('seven'),
-                ),
-              ),
+              buildKey(color: Colors.red, soundNumber: 1),
+              buildKey(color: Colors.white, soundNumber: 2),
+              buildKey(color: Colors.green, soundNumber: 3),
+              buildKey(color: Colors.teal, soundNumber: 4),
+              buildKey(color: Colors.yellow, soundNumber: 5),
+              buildKey(color: Colors.purple, soundNumber: 6),
+              buildKey(color: Colors.brown, soundNumber: 7),
             ],
           ),
         ),
