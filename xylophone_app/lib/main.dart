@@ -12,14 +12,14 @@ class XylophoneApp extends StatelessWidget {
   }
 
   Expanded buildKey(
-      {required Color color, required int soundNumber}) {
+      {required Color color, required int soundNumber, required String text}) {
     return Expanded(
       child: TextButton(
         style: TextButton.styleFrom(backgroundColor: color),
         onPressed: () {
           playSound(soundNumber);
         },
-        child: const Text('play'),
+        child: Text(text),
       ),
     );
   }
@@ -33,13 +33,13 @@ class XylophoneApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              buildKey(color: Colors.red, soundNumber: 1),
-              buildKey(color: Colors.white, soundNumber: 2),
-              buildKey(color: Colors.green, soundNumber: 3),
-              buildKey(color: Colors.teal, soundNumber: 4),
-              buildKey(color: Colors.yellow, soundNumber: 5),
-              buildKey(color: Colors.purple, soundNumber: 6),
-              buildKey(color: Colors.brown, soundNumber: 7),
+              buildKey(color: Colors.red, soundNumber: 1, text: 'play1'),
+              buildKey(color: Colors.white, soundNumber: 2, text: 'play2'),
+              buildKey(color: Colors.green, soundNumber: 3, text: 'play3'),
+              buildKey(color: Colors.teal, soundNumber: 4, text: 'play4'),
+              buildKey(color: Colors.yellow, soundNumber: 5, text: 'play5'),
+              buildKey(color: Colors.purple, soundNumber: 6, text: 'play6'),
+              buildKey(color: Colors.brown, soundNumber: 7, text: 'play7'),
             ],
           ),
         ),
