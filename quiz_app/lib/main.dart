@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'quiz_brain.dart';
 
 QuizBrain quizBrain = QuizBrain();
@@ -36,12 +37,13 @@ class _QuizPageState extends State<QuizPage> {
 
  void checkAnswer(bool userPicked) {
   bool correct = quizBrain.qetQuestionAnswer();
+   setState(() {
     if (correct == true) {
       scoreKeeper.add(const Icon(Icons.check, color: Colors.green,));
     } else {
       scoreKeeper.add(const Icon(Icons.close, color: Colors.red,));
     }
-    setState(() {
+    
       quizBrain.nextQuestion();
     });
  }
