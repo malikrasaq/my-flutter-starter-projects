@@ -35,18 +35,33 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
- void checkAnswer(bool userPicked) {
-  bool correct = quizBrain.qetQuestionAnswer();
-   setState(() {
-    if (correct == true) {
-      scoreKeeper.add(const Icon(Icons.check, color: Colors.green,));
-    } else {
-      scoreKeeper.add(const Icon(Icons.close, color: Colors.red,));
-    }
-    
+  void checkAnswer(bool userPicked) {
+    bool correct = quizBrain.qetQuestionAnswer();
+    setState(() {
+      if (quizBrain.isFinished() == true) {
+        Alert(context: context, title: "Finished", desc: "You\'ve reached the end of the quiz.")
+            .show();
+        quizBrain.reset();
+
+        scoreKeeper = [];
+      }
+
+      if (correct == true) {
+        scoreKeeper.add(const Icon(
+          Icons.check,
+          color: Colors.green,
+        ));
+      } else {
+        scoreKeeper.add(const Icon(
+          Icons.close,
+          color: Colors.red,
+        ));
+      }
+
       quizBrain.nextQuestion();
     });
- }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -64,7 +79,7 @@ class _QuizPageState extends State<QuizPage> {
                 style: const TextStyle(
                   fontSize: 25.0,
                   color: Colors.white,
-                ), 
+                ),
               ),
             ),
           ),
@@ -82,7 +97,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-               checkAnswer(true);
+                checkAnswer(true);
               },
             ),
           ),

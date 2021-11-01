@@ -37,8 +37,6 @@ import 'question.dart';
       if (_questionNumber < _questionBank.length - 1) {
         _questionNumber++;
       }
-      print(_questionNumber);
-      print(_questionBank.length);
     }
   
     String getQuestionText() {
@@ -47,5 +45,17 @@ import 'question.dart';
 
     bool qetQuestionAnswer() {
       return _questionBank[_questionNumber].questionAnswers;
+    }
+
+    bool isFinished() {
+      if (_questionNumber >= _questionBank.length - 1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    void reset() {
+      _questionNumber = 0;
     }
 }
