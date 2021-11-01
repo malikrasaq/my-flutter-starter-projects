@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(const QuizApp());
 
@@ -30,17 +32,19 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Widget> scoreKeeper = [];
+  List<Icon> scoreKeeper = [];
 
-  List<Question> questionBank = [
-    Question(questionText: 'is sahara the largest desert in the world?', questionAnswers: false),
-    Question(questionText:'is River Nile the longest river in the world?', questionAnswers: true),
-    Question(questionText:'is Nigeria the most populated country in africa?', questionAnswers: true),
-  ];
-
-
-  int questionNumber = 0;
-
+ void checkAnswer(bool userPicked) {
+  bool correct = quizBrain.qetQuestionAnswer();
+    if (correct == true) {
+      print('User got it right');
+    } else {
+      print('User got it wrong');
+    }
+    setState(() {
+      quizBrain.nextQuestion();
+    });
+ }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,12 +57,12 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBank[questionNumber].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
                   color: Colors.white,
-                ),
+                ), 
               ),
             ),
           ),
@@ -76,15 +80,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correct = questionBank[questionNumber].questionAnswers;
-                if (correct == true) {
-                  print('You\'re correct');
-                } else {
-                  print('You\'re wrong');
-                }
-                setState(() {
-                  questionNumber++;
-                });
+               checkAnswer(true);
               },
             ),
           ),
@@ -102,15 +98,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                 bool correct = questionBank[questionNumber].questionAnswers;
-                if (correct == true) {
-                  print('Youre correct');
-                } else {
-                  print('Youre wrong');
-                }
-                setState(() {
-                  questionNumber++;
-                });
+                checkAnswer(false);
               },
             ),
           ),
