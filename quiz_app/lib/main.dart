@@ -37,9 +37,9 @@ class _QuizPageState extends State<QuizPage> {
  void checkAnswer(bool userPicked) {
   bool correct = quizBrain.qetQuestionAnswer();
     if (correct == true) {
-      print('User got it right');
+      scoreKeeper.add(const Icon(Icons.check, color: Colors.green,));
     } else {
-      print('User got it wrong');
+      scoreKeeper.add(const Icon(Icons.close, color: Colors.red,));
     }
     setState(() {
       quizBrain.nextQuestion();
