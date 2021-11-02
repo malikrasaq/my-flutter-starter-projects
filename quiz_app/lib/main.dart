@@ -39,7 +39,7 @@ class _QuizPageState extends State<QuizPage> {
     bool correct = quizBrain.qetQuestionAnswer();
     setState(() {
       if (quizBrain.isFinished() == true) {
-        Alert(context: context, title: "Finished", desc: "You\'ve reached the end of the quiz.")
+        Alert(context: context, title: "Finished", desc: "You've reached the end of the quiz.")
             .show();
         quizBrain.reset();
 

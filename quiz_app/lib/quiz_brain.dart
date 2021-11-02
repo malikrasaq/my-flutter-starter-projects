@@ -10,7 +10,7 @@ import 'question.dart';
     Question('You can lead a cow down stairs but not up stairs.', false),
     Question('Approximately one quarter of human bones are in the feet.', true),
     Question('A slug\'s blood is green.', true),
-    Question('Buzz Aldrin\'s mother\'s maiden name was \"Moon\".', true),
+    Question('Buzz Aldrin\'s mother\'s maiden name was "Moon".', true),
     Question('It is illegal to pee in the Ocean in Portugal.', true),
     Question(
         'No piece of square dry paper can be folded in half more than 7 times.',
@@ -24,7 +24,7 @@ import 'question.dart';
     Question(
         'The total surface area of two human lungs is approximately 70 square metres.',
         true),
-    Question('Google was originally called \"Backrub\".', true),
+    Question('Google was originally called "Backrub".', true),
     Question(
         'Chocolate affects a dog\'s heart and nervous system; a few ounces are enough to kill a small dog.',
         true),
