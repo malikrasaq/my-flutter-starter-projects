@@ -17,52 +17,38 @@ class _InputPageState extends State<InputPage> {
       ),
       body: Column(
         children: [
-          Expanded(child: Row(children: [
-              Expanded(child:  Container(
-                  margin: const EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: const Color(0xFF1D1E33),),
-              ),
-              ),
-              Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: const Color(0xFF1D1E33),
-                      ),
-                    ),
-                  ),
-          ],),
-          ),
-              Expanded(child: Container(
-                      margin: const EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: const Color(0xFF1D1E33),
-                      ),
-                    ),
-                    ),
-              Expanded(
+          Expanded(
             child: Row(
-              children: [
+              children: const [
                 Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: const Color(0xFF1D1E33),
-                    ),
+                  child: ReusableCard(
+                    color:  Color(0xFF1D1E33),
+                  ),
+                ), 
+                Expanded(
+                  child:  ReusableCard(
+                    color: Color(0xFF1D1E33),
+                  ),
+                ),
+              ],
+            ),
+          ),
+           const Expanded(
+            child: ReusableCard(
+              color: Color(0xFF1D1E33),
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: const [
+                Expanded(
+                  child:  ReusableCard(
+                    color: Color(0xFF1D1E33),
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: const Color(0xFF1D1E33),
-                    ),
+                  child: ReusableCard(
+                    color: Color(0xFF1D1E33),
                   ),
                 ),
               ],
@@ -70,6 +56,25 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
-      );
+    );
   }
-} 
+}
+
+class ReusableCard extends StatelessWidget {
+   const ReusableCard({Key? key, required this.color}) : super(key: key);
+
+  final Color color;
+  
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: color,
+      ),
+    );
+  }
+}
