@@ -12,37 +12,16 @@ enum Gender {
   male,
   female,
 }
+
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
 
- @override
+  @override
   _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
-
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
-
-
-  void updateColor(Gender selectedGender) {
-    if (selectedGender == Gender.male) {
-      if (maleCardColor == inactiveCardColor) {
-        maleCardColor = activeCardColor;
-        femaleCardColor = inactiveCardColor;
-      } else {
-        maleCardColor = inactiveCardColor;
-      }
-    }
-    if (selectedGender == Gender.female) {
-      if (femaleCardColor == inactiveCardColor) {
-        femaleCardColor = activeCardColor;
-        maleCardColor = inactiveCardColor;
-      }
-    } else {
-      femaleCardColor = inactiveCardColor;
-    }
-  }
+  Gender? selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -55,37 +34,47 @@ class _InputPageState extends State<InputPage> {
         children: [
           Expanded(
             child: Row(
-              children:  [
-                 Expanded(
+              children: [
+                Expanded(
                   child: GestureDetector(
                     onTap: () {
-                     setState(() {
-                       updateColor(Gender.male);
-                     });
-                    },
-                    child: ReusableCard(
-                      color: maleCardColor,
-                      cardChild: const IconContent(icon: FontAwesomeIcons.mars, label: 'MALE',),
-                    ),
-                  ),
-                ), 
-                Expanded(
-                  child:  GestureDetector(
-                    onTap: () {
                       setState(() {
-                        updateColor(Gender.female);
+                        selectedGender = Gender.male;
                       });
                     },
                     child: ReusableCard(
-                      color: femaleCardColor,
-                      cardChild: const IconContent(icon: FontAwesomeIcons.venus, label: 'FEMALE',),
+                      color: selectedGender == Gender.male
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      cardChild: const IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        label: 'MALE',
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    },
+                    child: ReusableCard(
+                      color: selectedGender == Gender.female
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      cardChild: const IconContent(
+                        icon: FontAwesomeIcons.venus,
+                        label: 'FEMALE',
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
           ),
-            const Expanded(
+          const Expanded(
             child: ReusableCard(
               color: activeCardColor,
             ),
@@ -94,7 +83,7 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: const [
                 Expanded(
-                  child:  ReusableCard(
+                  child: ReusableCard(
                     color: activeCardColor,
                   ),
                 ),
@@ -107,17 +96,13 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Container(
-              color: bottonContainerColor,
-              margin: const EdgeInsets.only(top: 10.0),
-              height: bottomContainerHeight,
-              width: double.infinity,
+            color: bottonContainerColor,
+            margin: const EdgeInsets.only(top: 10.0),
+            height: bottomContainerHeight,
+            width: double.infinity,
           ),
         ],
       ),
     );
   }
 }
-
-
-
-
