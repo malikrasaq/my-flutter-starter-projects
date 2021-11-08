@@ -3,6 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
+import 'result_page.dart';
+import 'round_icon_button.dart';
+import 'bottom_button.dart';
 
 enum Gender {
   male,
@@ -19,6 +22,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
+  int weight = 60;
+  int age = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -97,21 +102,20 @@ class _InputPageState extends State<InputPage> {
                     data: SliderTheme.of(context).copyWith(
                       thumbColor: const Color(0xFFEB1555),
                       overlayColor: const Color(0x15EB1555),
-                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                      overlayShape: const RoundSliderOverlayShape(overlayRadius: 30.0),
+                      thumbShape:
+                          const RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      overlayShape:
+                          const RoundSliderOverlayShape(overlayRadius: 30.0),
                       inactiveTrackColor: const Color(0xFF8D8E98),
                       activeTrackColor: Colors.white,
-
                     ),
-                    
                     child: Slider(
                         value: height.toDouble(),
                         min: 120.0,
                         max: 220.0,
                         onChanged: (double newValue) {
                           setState(() {
-                          height = newValue.round();
-                            
+                            height = newValue.round();
                           });
                         }),
                   ),
@@ -121,25 +125,100 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: Row(
-              children: const [
+              children: [
                 Expanded(
                   child: ReusableCard(
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                     color: kActiveCardColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                     color: kActiveCardColor,
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            color: kBottonContainerColor,
-            margin: const EdgeInsets.only(top: 10.0),
-            height: kBottomContainerHeight,
-            width: double.infinity,
+          BottomButton(
+            buttonTitle: 'CALCULATE',
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ResultPage()));
+            },
           ),
         ],
       ),
