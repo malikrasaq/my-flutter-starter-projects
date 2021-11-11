@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/constants.dart';
 
@@ -24,8 +23,8 @@ class BottomButton extends StatelessWidget {
           ),
         ),
         color: kBottonContainerColor,
-        margin: EdgeInsets.only(top: 10.0),
-        padding: EdgeInsets.only(bottom: 10.0),
+        margin: const EdgeInsets.only(top: 10.0),
+        padding: const EdgeInsets.only(bottom: 10.0),
         height: kBottomContainerHeight,
         width: double.infinity,
       ),
